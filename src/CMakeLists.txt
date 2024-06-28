@@ -1,4 +1,4 @@
-set(CMAKE_CXX_STANDARD 11)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(LINK_WITH_SHARED_OSI OFF CACHE BOOL "Link FMU with shared OSI library instead of statically linking")
 set(PUBLIC_LOGGING ON CACHE BOOL "Enable logging via FMI logger")
@@ -20,17 +20,17 @@ configure_file(modelDescription.in.xml modelDescription.xml @ONLY)
 configure_file(OSMPConfig.in.h OSMPConfig.h)
 
 find_package(Protobuf 2.6.1 REQUIRED)
-add_library(sl-1-5-reflection-based-fmcw-lidar-detection-modelSHARED
+add_library(sl-1-5-reflection-based-fmcw-lidar-detection-model SHARED
 		OSMP.cpp
 		OSMP.h
 		MySensorModel.cpp
 		MySensorModel.h)
-set_target_properties(sl-1-5-reflection-based-fmcw-lidar-detection-modelPROPERTIES PREFIX "")
-target_compile_definitions(sl-1-5-reflection-based-fmcw-lidar-detection-modelPRIVATE "FMU_SHARED_OBJECT")
+set_target_properties(sl-1-5-reflection-based-fmcw-lidar-detection-model PROPERTIES PREFIX "")
+target_compile_definitions(sl-1-5-reflection-based-fmcw-lidar-detection-model PRIVATE "FMU_SHARED_OBJECT")
 if(LINK_WITH_SHARED_OSI)
-	target_link_libraries(sl-1-5-reflection-based-fmcw-lidar-detection-modelopen_simulation_interface)
+	target_link_libraries(sl-1-5-reflection-based-fmcw-lidar-detection-model open_simulation_interface)
 else()
-	target_link_libraries(sl-1-5-reflection-based-fmcw-lidar-detection-modelopen_simulation_interface_pic)
+	target_link_libraries(sl-1-5-reflection-based-fmcw-lidar-detection-model open_simulation_interface_pic)
 endif()
 
 include_directories(${CMAKE_CURRENT_BINARY_DIR})

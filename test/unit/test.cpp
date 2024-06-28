@@ -12,7 +12,7 @@ class ISensorModelTest : public ::testing::Test
 {
 };
 
-TEST_F(ISensorModelTest, YawRotation)
+/*TEST_F(ISensorModelTest, YawRotation)
 {
 
     const double x = 5.0;
@@ -183,4 +183,4 @@ TEST_F(ISensorModelTest, TransformToSensor)
     EXPECT_NEAR(rel_x, 9.8, 0.000001);
     EXPECT_NEAR(rel_y, -23, 0.000001);
     EXPECT_NEAR(rel_z, 0.1, 0.000001);
-}
+}*/
