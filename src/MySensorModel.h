@@ -11,12 +11,63 @@
 #include <iostream>
 #include <set>
 #include <string>
+#include <random>
 
 #include "OSMPConfig.h"
 #include "fmi2Functions.h"
 #include "osi_sensordata.pb.h"
 
 using namespace std;
+
+struct Beam
+{
+    float horizontal_angle;
+    float vertical_angle;
+    int beam_idx;
+};
+
+struct BeamDivergence
+{
+    float horizontal_angle;
+    float vertical_angle;
+};
+
+struct ModelParameters
+{
+    // ray tracing parameter
+    vector<Beam> beam_config;
+    BeamDivergence beam_divergence;
+
+    float emitted_power_per_beam_mW;
+    float emitted_power_per_ray_w;
+
+    uint32_t rays_per_beam_horizontal;
+    uint32_t rays_per_beam_vertical;
+    uint32_t rays_per_beam;
+
+    float distance_noise_std;
+    float velocity_noise_std;
+};
+
+struct SensorParameters
+{
+    float wavelength_m;
+    float min_range;
+    float max_range;
+
+    double ramp_duration;
+    double sample_frequency;
+    double bandwidth;
+    double f_res;
+    double kappa;
+
+    // fourier tracing parameter
+    int window_data_per_bin;
+    int bin_affect_range;
+    std::vector<float> window_function;
+    int fft_size;
+    int num_fft_bins;
+};
 
 class MySensorModel
 {
@@ -25,29 +76,16 @@ class MySensorModel
 
     osi3::SensorData Step(osi3::SensorView current_in, double time);
 
-    static void RotatePointXYZ(double x, double y, double z, double yaw, double pitch, double roll, double& rx, double& ry, double& rz);
-    static void TransformCoordinateGlobalToVehicle(double& rx,
-                                                   double& ry,
-                                                   double& rz,
-                                                   double ego_x,
-                                                   double ego_y,
-                                                   double ego_z,
-                                                   double ego_yaw,
-                                                   double ego_pitch,
-                                                   double ego_roll,
-                                                   double ego_bbcenter_to_rear_x,
-                                                   double ego_bbcenter_to_rear_y,
-                                                   double ego_bbcenter_to_rear_z);
 
-    static void TransformCoordinateVehicleToSensor(double& rx,
-                                                   double& ry,
-                                                   double& rz,
-                                                   double mounting_position_x,
-                                                   double mounting_position_y,
-                                                   double mounting_position_z,
-                                                   double mounting_position_yaw,
-                                                   double mounting_position_pitch,
-                                                   double mounting_position_roll);
+  protected:
+    void SetParams();
+
+    vector<Beam> CalculateBeamPattern() const;
+
+    void AddNoise(double &measurand, double std, std::default_random_engine &generator);
+
+    ModelParameters model_params;
+    SensorParameters sensor_params;
 
   private:
     string instance_name_;

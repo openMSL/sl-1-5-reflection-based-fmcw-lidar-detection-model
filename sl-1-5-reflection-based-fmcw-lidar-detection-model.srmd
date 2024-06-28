@@ -20,7 +20,7 @@
         <!-- Model related information -->
         <ClassificationEntry keyword="model.manufacturer">Persival GmbH</ClassificationEntry>
         <ClassificationEntry keyword="model.family">Perception Sensor Models</ClassificationEntry>
-        <ClassificationEntry keyword="model.name">Sensor Model Repository Template</ClassificationEntry>
+        <ClassificationEntry keyword="model.name">Reflection Based FMCW Lidar Detection Model</ClassificationEntry>
         <ClassificationEntry keyword="model.version">1.0</ClassificationEntry>
         <ClassificationEntry keyword="model.releasedate">10-02-23</ClassificationEntry>
         <ClassificationEntry keyword="model.status">Released</ClassificationEntry>

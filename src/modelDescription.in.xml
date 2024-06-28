@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <fmiModelDescription
   fmiVersion="2.0"
-  modelName="sl-1-0-sensor-model-repository-template"
+  modelName="sl-1-5-reflection-based-fmcw-lidar-detection-model"
   guid="@FMUGUID@"
   description="Demonstration C++ Sensor FMU for OSI Sensor Model Packaging within OpenMSL"
   author="Persival GmbH"
@@ -10,7 +10,7 @@
   generationDateAndTime="@FMUTIMESTAMP@"
   variableNamingConvention="structured">
   <CoSimulation
-    modelIdentifier="sl-1-0-sensor-model-repository-template"
+    modelIdentifier="sl-1-5-reflection-based-fmcw-lidar-detection-model"
     canHandleVariableCommunicationStepSize="true"
     canNotUseMemoryManagementFunctions="true">
     <SourceFiles>
