@@ -155,4 +155,3 @@ Automotive and Engine Technology, vol. 5, no. 3-4, pp. 187–197, Dec. 2020.
 
 <a name="Holder2019">[3]</a>
 M. F. Holder, C. Linnhoff, P. Rosenberger, and H. Winner, [*“The Fourier Tracing Approach for Modeling Automotive Radar Sensors,”*](https://ieeexplore.ieee.org/document/8768113) 20th International Radar Symposium (IRS), Ulm, Germany, 26-28 June 2019.
-
