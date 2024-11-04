@@ -1,26 +1,26 @@
 # SL-1-5 Reflection Based FMCW Lidar Detection Model [![Credibility Assessment](../../actions/workflows/credibility_assessment.yml/badge.svg)](https://github.com/openMSL/sl-1-5-reflection-based-fmcw-lidar-detection-model/actions/workflows/credibility_assessment.yml)
 
-
-
 [![Credibility Assessment](../../actions/workflows/credibility_assessment.yml/badge.svg)](https://github.com/openMSL/sl-1-0-sensor-model-repository-template/actions/workflows/credibility_assessment.yml)
 
 This is a parameterizable reflection based FMCW lidar detection model that uses the Open Simulation Interface (OSI) standard.
 The model receives lidar reflection data calculated in a simulation tool beforehand e.g. with ray tracing and outputs lidar detection data.
-In contrast to [SL 1-2 Reflection Based Lidar Object Model](https://github.com/openMSL/sl-1-2-reflection-based-lidar-object-model), an additional radial velocity component is processed for each detection in order to model the FMCW principle. 
-
+In contrast to [SL 1-2 Reflection Based Lidar Object Model](https://github.com/openMSL/sl-1-2-reflection-based-lidar-object-model), an additional radial velocity component is processed for each detection in order to model the FMCW principle.
 
 <br><br>
 
-
 <img src="doc/img/sim_screenshot.png" alt="Eye-catcher Image" width="800" />
 
-The visualization of the model output was created with the [Simspector](https://www.persival.de/simspector) developed by Persival GmbH. 
+The visualization of the model output was created with the [Simspector](https://www.persival.de/simspector) developed by Persival GmbH.
 
 ## Modeling Approach
 
 ### Simulation Architecture
 
-The model in this repository is the signal processing model of a FMCW lidar sensor simulation. The simulation architecture ist depicted in the figure below an consists of the enviroment simulation, the signal propagation model and the signal processing model. [Open Simulation Interface (OSI)](https://github.com/OpenSimulationInterface/open-simulation-interface) is used for communication between the components. For the environmental simulation and the signal propagation model, any model can be used if the corresponding OSI interfaces are supported as specified below. The signal processing model presented here is based on the [sl-1-0-sensor-model-repository-template](https://github.com/openMSL/sl-1-0-sensor-model-repository-template).
+The model in this repository is the signal processing model of a FMCW lidar sensor simulation.
+The simulation architecture ist depicted in the figure below an consists of the enviroment simulation, the signal propagation model and the signal processing model.
+[Open Simulation Interface (OSI)](https://github.com/OpenSimulationInterface/open-simulation-interface) is used for communication between the components.
+For the environmental simulation and the signal propagation model, any model can be used if the corresponding OSI interfaces are supported as specified below.
+The signal processing model presented here is based on the [sl-1-0-sensor-model-repository-template](https://github.com/openMSL/sl-1-0-sensor-model-repository-template).
 
 <img src="doc/img/SimulationArchitecture.png" alt="Eye-catcher Image" width="800" />
 
@@ -28,7 +28,16 @@ Architecture of the sensor simulation based on [[1](#Hofrichter2024)</sup>].
 
 ### Signal Processing [[1](#Hofrichter2024)</sup>]
 
-The input for the model are lidar reflections (`sensor_view.lidar_sensor_view.reflection`), which can be calculated using a ray tracer, for example. Each reflection holds the information a, b and c. In addition, a predefined beam pattern determines from which direction, depending on the azimuth and elevation angle, the reflections originate. For the modeling approach, the beam pattern is divided into discrete areas, called pixels, from which a lidar detection can result. The beam pattern is assumed to consist of horizontal scan lines that are stacked on top of each other. Accordingly, the size of the individual pixels is determined by the vertical beam divergence of the laser and the azimuth resolution of the sensor. The pixels are super-sampled by multiple reflections as described in [[2](#Rosenberger2020)</sup>]. For each pixel, an up-ramp and a down-ramp Fast Fourier Transform (FFT) is calculated according to the FMCW principle to determine the distance and velocity of the lidar detection. The FFTs are approximated using the Fourier tracing method [[3](#Holder2019)</sup>], which was also used in the [    sl-1-1-reflection-based-radar-object-model](https://github.com/openMSL/sl-1-1-reflection-based-radar-object-model). A simple maximum function is used to detect a peak in the up and down-ramp spectrum, from which the distance and velocity of the detection are derived. This procedure is repeated for each pixel, resulting in a point cloud as output. 
+The input for the model are lidar reflections (`sensor_view.lidar_sensor_view.reflection`), which can be calculated using a ray tracer, for example.
+Each reflection holds the information a, b and c. In addition, a predefined beam pattern determines from which direction, depending on the azimuth and elevation angle, the reflections originate.
+For the modeling approach, the beam pattern is divided into discrete areas, called pixels, from which a lidar detection can result.
+The beam pattern is assumed to consist of horizontal scan lines that are stacked on top of each other.
+Accordingly, the size of the individual pixels is determined by the vertical beam divergence of the laser and the azimuth resolution of the sensor.
+The pixels are super-sampled by multiple reflections as described in [[2](#Rosenberger2020)</sup>].
+For each pixel, an up-ramp and a down-ramp Fast Fourier Transform (FFT) is calculated according to the FMCW principle to determine the distance and velocity of the lidar detection.
+The FFTs are approximated using the Fourier tracing method [[3](#Holder2019)</sup>], which was also used in the [sl-1-1-reflection-based-radar-object-model](https://github.com/openMSL/sl-1-1-reflection-based-radar-object-model).
+A simple maximum function is used to detect a peak in the up and down-ramp spectrum, from which the distance and velocity of the detection are derived.
+This procedure is repeated for each pixel, resulting in a point cloud as output.
 
 ## Parameterization
 
@@ -72,7 +81,6 @@ The input for the model are lidar reflections (`sensor_view.lidar_sensor_view.re
 | `window_function`                   | Window function lookup-table                                                 |
 | `fft_size`                          | Size of FFT                                                                  |
 
-
 **Note:** Due to issues with OpenMCX, the ray configuration has to be set within the ray tracing model as well.
 
 ## Interface
@@ -86,7 +94,6 @@ The input for the model are lidar reflections (`sensor_view.lidar_sensor_view.re
 | `sensor_view.lidar_sensor_view.reflection.time_of_flight`            | required            |
 | `sensor_view.lidar_sensor_view.reflection.doppler_shift`             | required            |
 
-
 ### Output: Fields in OSI3::SensorData Filled by the Sensor Model
 
 | OSI Message                                                       | Required / Optional |
@@ -97,7 +104,6 @@ The input for the model are lidar reflections (`sensor_view.lidar_sensor_view.re
 | `sensor_data.feature_data.lidar_sensor.detection.position`        | required            |
 | `sensor_data.feature_data.lidar_sensor.detection.intensity`       | required            |
 | `sensor_data.feature_data.lidar_sensor.detection.radial_velocity` | required            |
-
 
 ## Build Instructions
 
@@ -121,7 +127,6 @@ The input for the model are lidar reflections (`sensor_view.lidar_sensor_view.re
 
 3. Take FMU from `FMU_INSTALL_DIR`
 
-
 ## Credits
 
 K. Hofrichter, C. Linnhoff, L. Elster, S. Peters, [*“FMCW Lidar Simulation with Ray Tracing and Standardized Interfaces,”*](https://www.sae.org/publications/technical-papers/content/2024-01-2977/) 2024 Stuttgart International Symposium, Stuttgart, Germany, 02-03 July 2024
@@ -131,7 +136,6 @@ This work received funding from the research project "[Synthetic FMCW-Lidar](htt
 | Synthetic FMCW-Lidar                                                                                     | LOEWE-Förderlinie 3                                                                                                  | Hessisches Ministerium für Wissenschaft und Kunst                                                                                                                                                                                 |
 |----------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | <img src="doc/img/3_Logo_Project.png" alt="Eye-catcher Image" width="150" /> | <img src="doc/img/1_Logo_LOEWE.jpg" alt="Eye-catcher Image" width="150" /> | <img src="doc/img/2_Logo_HMWK.jpg" alt="Eye-catcher Image" width="150" /> |
-
 
 Thanks to all contributors of the following libraries:
 
