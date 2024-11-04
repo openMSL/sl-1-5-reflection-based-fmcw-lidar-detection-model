@@ -9,4 +9,3 @@ This folder contains some examples for different test cases, as listed below.
 | File                    | Description                                                                                                                                                                                                                                   |
 |-------------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | 001_smoke_test_tracefile          | In this smoke test the model input is connected to a trace file player. It tests, if the model can simulate the given input without any runtime errors.                                                                                       |
-
