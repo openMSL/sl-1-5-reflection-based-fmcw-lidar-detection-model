@@ -136,7 +136,7 @@ which is financed with funds of LOEWE - Landes-Offensive zur Entwicklung Wissens
 
 | Synthetic FMCW-Lidar                                                                                     | LOEWE-Förderlinie 3                                                                                                  | Hessisches Ministerium für Wissenschaft und Kunst                                                                                                                                                                                 |
 |----------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| <img src="doc/img/3_Logo_Project.png" alt="Eye-catcher Image" width="150" /> | <img src="doc/img/1_Logo_LOEWE.jpg" alt="Eye-catcher Image" width="150" /> | <img src="doc/img/2_Logo_HMWK.png" alt="Eye-catcher Image" width="150" /> |
+| ![Project Logo](doc/img/3_Logo_Project.png) | ![LOEWE Logo](doc/img/1_Logo_LOEWE.jpg) | ![HMWK Logo](doc/img/2_Logo_HMWK.png) |
 
 Thanks to all contributors of the following libraries:
 
