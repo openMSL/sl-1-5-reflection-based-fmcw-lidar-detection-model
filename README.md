@@ -43,43 +43,43 @@ This procedure is repeated for each pixel, resulting in a point cloud as output.
 
 ### Beam Pattern
 
-| Parameter                           | Description                                                      |
-|-------------------------------------|------------------------------------------------------------------|
-| `no_of_layers`                      | Number of horizontal scan lines                                  |
-| `beam_center_elevation_deg`         | Elevation angle for each horizontal scan line in deg             |
-| `min_azimuth_rad`                   | Minimum azimuth angle in rad                                     |
-| `max_azimuth_rad`                   | Maximum azimuth angle in rad                                     |
-| `azimuth_resolution_rad`            | Azimuth resolution of beam pattern in rad                        |
-| `beam_divergence.vertical_angle`    | Vertical beam divergence in rad                                  |
-| `beam_divergence.horizontal_angle`  | Horizontal beam divergence in rad                                |
-| `emitted_power_per_beam_mW`         | Emitted power per beam in mW                                     |
+| Parameter                          | Description                                          |
+| ---------------------------------- | ---------------------------------------------------- |
+| `no_of_layers`                     | Number of horizontal scan lines                      |
+| `beam_center_elevation_deg`        | Elevation angle for each horizontal scan line in deg |
+| `min_azimuth_rad`                  | Minimum azimuth angle in rad                         |
+| `max_azimuth_rad`                  | Maximum azimuth angle in rad                         |
+| `azimuth_resolution_rad`           | Azimuth resolution of beam pattern in rad            |
+| `beam_divergence.vertical_angle`   | Vertical beam divergence in rad                      |
+| `beam_divergence.horizontal_angle` | Horizontal beam divergence in rad                    |
+| `emitted_power_per_beam_mW`        | Emitted power per beam in mW                         |
 
 ### Ray Pattern
 
-| Parameter                           | Description                                                                  |
-|-------------------------------------|------------------------------------------------------------------------------|
-| `rays_per_beam_horizontal`          | Number of rays per beam in horizontal direction                              |
-| `rays_per_beam_vertical`            | Number of rays per beam in vertical direction                                |
-| `distance_noise_std`                | Standard deviation of distance noise applied to each ray in m                |
-| `rays_per_beam_vertical`            | Standard deviation of velocity noise applied to each ray in m/s              |
+| Parameter                  | Description                                                     |
+| -------------------------- | --------------------------------------------------------------- |
+| `rays_per_beam_horizontal` | Number of rays per beam in horizontal direction                 |
+| `rays_per_beam_vertical`   | Number of rays per beam in vertical direction                   |
+| `distance_noise_std`       | Standard deviation of distance noise applied to each ray in m   |
+| `rays_per_beam_vertical`   | Standard deviation of velocity noise applied to each ray in m/s |
 
 ### Lidar Parameters
 
-| Parameter                           | Description                                                                  |
-|-------------------------------------|------------------------------------------------------------------------------|
-| `wavelength_m`                      | Wavelength of emitter in m                                                   |
-| `min_range`                         | Minimum range in m                                                           |
-| `max_range`                         | Maximum range in m                                                           |
-| `ramp_duration`                     | Duration of up/down ramp in triangular frequency modulation pattern in s     |
+| Parameter       | Description                                                              |
+| --------------- | ------------------------------------------------------------------------ |
+| `wavelength_m`  | Wavelength of emitter in m                                               |
+| `min_range`     | Minimum range in m                                                       |
+| `max_range`     | Maximum range in m                                                       |
+| `ramp_duration` | Duration of up/down ramp in triangular frequency modulation pattern in s |
 
 ### Fourier Tracing Parameters
 
-| Parameter                           | Description                                                                  |
-|-------------------------------------|------------------------------------------------------------------------------|
-| `window_data_per_bin`               | Data points per bin in the look-up table                                     |
-| `bin_affect_range`                  | Number of bins that are effected by the windowing function                   |
-| `window_function`                   | Window function lookup-table                                                 |
-| `fft_size`                          | Size of FFT                                                                  |
+| Parameter             | Description                                                |
+| --------------------- | ---------------------------------------------------------- |
+| `window_data_per_bin` | Data points per bin in the look-up table                   |
+| `bin_affect_range`    | Number of bins that are effected by the windowing function |
+| `window_function`     | Window function lookup-table                               |
+| `fft_size`            | Size of FFT                                                |
 
 **Note:** Due to issues with OpenMCX, the ray configuration has to be set within the ray tracing model as well.
 
@@ -88,7 +88,7 @@ This procedure is repeated for each pixel, resulting in a point cloud as output.
 ### Input: Required Fields in OSI3::SensorView
 
 | OSI Message                                                          | Required / Optional |
-|----------------------------------------------------------------------|---------------------|
+| -------------------------------------------------------------------- | ------------------- |
 | `sensor_view.lidar_sensor_view.view_configuration.mounting_position` | required            |
 | `sensor_view.lidar_sensor_view.reflection.signal_strength`           | required            |
 | `sensor_view.lidar_sensor_view.reflection.time_of_flight`            | required            |
@@ -97,7 +97,7 @@ This procedure is repeated for each pixel, resulting in a point cloud as output.
 ### Output: Fields in OSI3::SensorData Filled by the Sensor Model
 
 | OSI Message                                                       | Required / Optional |
-|-------------------------------------------------------------------|---------------------|
+| ----------------------------------------------------------------- | ------------------- |
 | `sensor_data.timestamp`                                           | required            |
 | `sensor_data.feature_data.lidar_sensor.header.mounting_position`  | required            |
 | `sensor_data.feature_data.lidar_sensor.header.sensor_id`          | required            |
@@ -134,9 +134,9 @@ K. Hofrichter, C. Linnhoff, L. Elster, S. Peters, [*“FMCW Lidar Simulation wit
 This work received funding from the research project "[Synthetic FMCW-Lidar](https://www.fzd.tu-darmstadt.de/forschung/research_projects_fzd/synthetic_fmcw_lidar/standardseite_265.en.jsp)"
 which is financed with funds of LOEWE - Landes-Offensive zur Entwicklung Wissenschaftlich-ökonomischer Exzellenz, Förderlinie 3: KMU-Verbundvorhaben (State Offensive for the Development of Scientific and Economic Excellence).
 
-| Synthetic FMCW-Lidar                                                                                     | LOEWE-Förderlinie 3                                                                                                  | Hessisches Ministerium für Wissenschaft und Kunst                                                                                                                                                                                 |
-|----------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| <img src="doc/img/3_Logo_Project.png" alt="Eye-catcher Image" width="150" /> | <img src="doc/img/1_Logo_LOEWE.jpg" alt="Eye-catcher Image" width="150" /> | <img src="doc/img/2_Logo_HMWK.jpg" alt="Eye-catcher Image" width="150" /> |
+| Synthetic FMCW-Lidar                        | LOEWE-Förderlinie 3                     | Hessisches Ministerium für Wissenschaft und Kunst |
+| ------------------------------------------- | --------------------------------------- | ------------------------------------------------- |
+| ![Project Logo](doc/img/3_Logo_Project.png) | ![LOEWE Logo](doc/img/1_Logo_LOEWE.jpg) | ![HMWK Logo](doc/img/2_Logo_HMWK.png)             |
 
 Thanks to all contributors of the following libraries:
 
